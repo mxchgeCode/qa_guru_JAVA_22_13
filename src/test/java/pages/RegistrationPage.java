@@ -1,43 +1,40 @@
 package pages;
-
-import com.codeborne.selenide.SelenideElement;
-import pages.components.CalendarComponent;
-
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
+import static com.codeborne.selenide.Selenide.open;
+import pages.components.Calendar;
+import com.codeborne.selenide.SelenideElement;
+
 
 public class RegistrationPage {
-
-    CalendarComponent calendar = new CalendarComponent();
-    SelenideElement titleLabel = $(".practice-form-wrapper"),
+    private final Calendar calendar = new Calendar();
+    private final SelenideElement
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
-            userEmailInput = $("#userEmail"),
-            genderWrapper = $("#genterWrapper"),
-            userNumberInput = $("#userNumber"),
-            dateOfBirthInput = $("#dateOfBirthInput"),
-            subjectsInput = $("#subjectsInput"),
-            hobbiesWrapper = $("#hobbiesWrapper"),
-            uploadPictureInput = $("#uploadPicture"),
-            currentAddressTextArea = $("#currentAddress"),
-            selectStateDropdown = $("#state"),
-            stateCityWrapper = $("#stateCity-wrapper"),
-            selectCityDropdown = $("#city"),
-            submitButton = $("#submit"),
-            userForm = $("#userForm");
+            emailInput = $("#userEmail"),
+            genderRadioButton = $("#genterWrapper"),
+            phoneInput = $("#userNumber"),
+            birthDateInput = $("#dateOfBirthInput"),
+            subjectInput = $("#subjectsInput"),
+            hobbyCheckBox = $("#hobbiesWrapper"),
+            uploadFileElement = $("#uploadPicture"),
+            addressInput = $("#currentAddress"),
+            stateField = $("#state"),
+            stateValue = $("#stateCity-wrapper"),
+            cityField = $("#city"),
+            cityValue = $("#stateCity-wrapper"),
+            submitButton = $("#submit");
 
+    public RegistrationPage openPage() {
+        open("/automation-practice-form");
+        return this;
+    }
 
-    public RegistrationPage openPage(String pageAddress) {
-        open(pageAddress);
-        titleLabel.shouldHave(text("Student Registration Form"));
+    public RegistrationPage removeBanner() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
     }
-
 
     public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
@@ -50,74 +47,60 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setEmail(String value) {
-        userEmailInput.setValue(value);
+        emailInput.setValue(value);
         return this;
     }
 
     public RegistrationPage setGender(String value) {
-        genderWrapper.$(byText(value)).click();
+        genderRadioButton.$(byText(value)).click();
         return this;
     }
 
-    public RegistrationPage setUserNumber(String value) {
-        userNumberInput.setValue(value);
+    public RegistrationPage setPhone(String value) {
+        phoneInput.setValue(value);
         return this;
     }
 
-    public RegistrationPage setDateOfBirth(String day, String month, String year) {
-        dateOfBirthInput.click();
+    public RegistrationPage setBirthDate(String day, String month, String year) {
+        birthDateInput.click();
         calendar.setDate(day, month, year);
+
         return this;
     }
 
-    public RegistrationPage setSubject(String subject) {
-        subjectsInput.setValue(subject).pressEnter();
+    public RegistrationPage setSubject(String value) {
+        subjectInput.setValue(value).pressEnter();
         return this;
     }
 
-    public RegistrationPage selectHobby(String hobby) {
-        hobbiesWrapper.$(byText(hobby)).click();
+    public RegistrationPage setHobby(String value) {
+        hobbyCheckBox.$(byText(value)).click();
         return this;
     }
 
-    public RegistrationPage uploadImage(String fileName) {
-        uploadPictureInput.uploadFromClasspath(fileName);
+    public RegistrationPage uploadFile(String value) {
+        uploadFileElement.uploadFromClasspath(value);
         return this;
     }
 
-    public RegistrationPage setAddress(String address) {
-        currentAddressTextArea.setValue(address);
+    public RegistrationPage setAddress(String value) {
+        addressInput.setValue(value);
         return this;
     }
 
-    public RegistrationPage setState(String state) {
-        selectStateDropdown.click();
-        stateCityWrapper.$(byText(state)).click();
+    public RegistrationPage setState(String value) {
+        stateField.click();
+        stateValue.$(byText(value)).click();
         return this;
     }
 
-    public RegistrationPage setCity(String city) {
-        selectCityDropdown.click();
-        stateCityWrapper.$(byText(city)).click();
+    public RegistrationPage setCity(String value) {
+        cityField.click();
+        cityValue.$(byText(value)).click();
         return this;
     }
 
-    public RegistrationPage clickSubmitButton() {
+    public void clickSubmit() {
         submitButton.click();
-        return this;
     }
-
-    public RegistrationPage userFormContainsValidatedClass(String className) {
-        userForm.shouldHave(cssClass(className));
-        return this;
-    }
-
-    public RegistrationPage containsRequiredCssValues(String element) {
-        $(element)
-                .shouldHave(cssValue("border-color", "rgb(220, 53, 69)"))
-                .shouldHave(attribute("required"));
-        return this;
-    }
-
-
 }

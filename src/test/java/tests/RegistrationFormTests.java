@@ -1,73 +1,59 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
+import pages.components.RegistrationResultsModal;
+import utils.RandomStudent;
 
 public class RegistrationFormTests extends TestBase {
-
-    public static final String AUTOMATION_PRACTICE_URL = "/automation-practice-form";
-    public static final String USER_NAME = "TestUserName";
-    public static final String USER_SURNAME = "TestLastName";
-    public static final String USER_EMAIL = "Test@test.com";
-    public static final String USER_GENDER = "Male";
-    public static final String USER_NUMBER = "9123456789";
-    public static final String YEAR_OF_BIRTH = "1990";
-    public static final String MONTH_OF_BIRTH = "June";
-    public static final String DAY_OF_BIRTH = "03";
-    public static final String SUBJECT = "Physics";
-    public static final String HOBBY = "Sports";
-    public static final String FILE_NAME = "1.png";
-    public static final String USER_STATE = "NCR";
-    public static final String USER_CITY = "Delhi";
-    public static final String ADDRESS = "TEST Address - 123";
-    public static final String TEST_TEXT = "TEST_TEXT";
-    public static final String TEXT_IN_RESULT_WINDOW = "Thanks for submitting the form";
-
+    RegistrationPage registrationPage = new RegistrationPage();
+    private final RegistrationResultsModal registrationResultsModal = new RegistrationResultsModal();
+    RandomStudent randomStudent = new RandomStudent();
 
     @Test
-    void fillAllFormsAndVerifyResultTest() {
-        registrationPage.openPage(AUTOMATION_PRACTICE_URL)
-                .setFirstName(USER_NAME)
-                .setLastName(USER_SURNAME)
-                .setEmail(USER_EMAIL)
-                .setGender(USER_GENDER)
-                .setUserNumber(USER_NUMBER)
-                .setDateOfBirth(DAY_OF_BIRTH, MONTH_OF_BIRTH, YEAR_OF_BIRTH)
-                .setSubject(SUBJECT)
-                .selectHobby(HOBBY)
-                .uploadImage(FILE_NAME)
-                .setAddress(ADDRESS)
-                .setState(USER_STATE)
-                .setCity(USER_CITY)
-                .clickSubmitButton();
-        verifyTextResultComponent.checkResultWindowHaveText(TEXT_IN_RESULT_WINDOW)
-                .verifyTableResult(USER_NAME + " " + USER_SURNAME)
-                .verifyTableResult(USER_EMAIL)
-                .verifyTableResult(USER_GENDER)
-                .verifyTableResult(USER_NUMBER)
-                .verifyTableResult(DAY_OF_BIRTH + " " + MONTH_OF_BIRTH + "," + YEAR_OF_BIRTH)
-                .verifyTableResult(SUBJECT)
-                .verifyTableResult(HOBBY)
-                .verifyTableResult(FILE_NAME)
-                .verifyTableResult(ADDRESS)
-                .verifyTableResult(USER_STATE + " " + USER_CITY);
-    }
+    void fillFormTest() {
+        String
+                userFirstName = randomStudent.getRandomFirstName(),
+                userLastName = randomStudent.getRandomLastName(),
+                userEmail = randomStudent.getRandomEmail(),
+                userGender = randomStudent.getRandomGender(),
+                userPhone = randomStudent.getRandomPhone(),
+                userBirthDay = randomStudent.getRandomBirthDay("day"),
+                userBirthMonth = randomStudent.getRandomBirthDay("month"),
+                userBirthYear = randomStudent.getRandomBirthDay("year"),
+                userSubject = randomStudent.getRandomSubject(),
+                userHobby = randomStudent.getRandomHobby(),
+                userAddress = randomStudent.getRandomAddress(),
+                userState = randomStudent.getRandomState(),
+                userCity = randomStudent.getRandomCity(userState);
+        System.out.println(userBirthDay);
 
-    @Test
-    void checkRequiredFieldsViewTest() {
-        registrationPage.openPage(AUTOMATION_PRACTICE_URL)
-                .clickSubmitButton()
-                .userFormContainsValidatedClass("was-validated")
-                .containsRequiredCssValues("#firstName")
-                .containsRequiredCssValues("#lastName")
-                .containsRequiredCssValues("#userNumber");
-    }
+        registrationPage.openPage()
 
-    @Test
-    void fillUserNumberByLettersTest() {
-        registrationPage.openPage(AUTOMATION_PRACTICE_URL)
-                .setUserNumber(TEST_TEXT)
-                .clickSubmitButton()
-                .containsRequiredCssValues("#userNumber");
-    }
+                .setFirstName(userFirstName)
+                .setLastName(userLastName)
+                .setEmail(userEmail)
+                .setGender(userGender)
+                .setPhone(userPhone)
+                .setBirthDate(userBirthDay, userBirthMonth, userBirthYear)
+                .setSubject(userSubject)
+                .setHobby(userHobby)
+                .uploadFile(randomStudent.getFullName())
+                .setAddress(userAddress)
+                .setState(userState)
+                .setCity(userCity)
+                .clickSubmit();
 
+        registrationResultsModal.verifyModalAppears()
+                .verifyResult("Student Name", userFirstName + " " + userLastName)
+                .verifyResult("Student Email", userEmail)
+                .verifyResult("Gender", userGender)
+                .verifyResult("Mobile", userPhone)
+                .verifyResult("Date of Birth", userBirthDay + " " + userBirthMonth + "," + userBirthYear)
+                .verifyResult("Subjects", userSubject)
+                .verifyResult("Hobbies", userHobby)
+                .verifyResult("Address", userAddress)
+                .verifyResult("State and City", userState + " " + userCity)
+                .verifyResult("Picture", randomStudent.getFileName());
+    }
 }

@@ -70,12 +70,24 @@ public class RandomStudent {
         };
     }
 
-    public String getFullName() {
-        return "1.png";
-    }
-
     public String getFileName() {
         return "1.png";
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 

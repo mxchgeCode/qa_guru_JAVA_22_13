@@ -7,7 +7,7 @@ import pages.components.RegistrationResultsModal;
 public class RegistrationFormTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
     private final RegistrationResultsModal registrationResultsModal = new RegistrationResultsModal();
-    RegidtrationData rd = new RegidtrationData();
+    RegistrationData rd = new RegistrationData();
 
     @Test
     void fillFormTest() {

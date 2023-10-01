@@ -1,6 +1,6 @@
 package tests;
 import utils.RandomStudent;
-public class RegidtrationData {
+public class RegistrationData {
     RandomStudent randomStudent = new RandomStudent();
     public String
                 userFirstName = randomStudent.getRandomFirstName(),

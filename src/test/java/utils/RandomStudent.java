@@ -8,7 +8,7 @@ import java.util.Locale;
 
 public class RandomStudent {
     StudentRegistrationTestData studentRegistrationTestData = new StudentRegistrationTestData();
-    public static Faker faker = new Faker(new Locale("en"));
+    public Faker faker = new Faker(new Locale("en"));
 
     public String getRandomFirstName() {
         return faker.name().firstName();

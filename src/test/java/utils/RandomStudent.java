@@ -71,7 +71,7 @@ public class RandomStudent {
     }
 
     public String getFileName() {
-        return "1.png";
+        return "img/1.png";
     }
 
 

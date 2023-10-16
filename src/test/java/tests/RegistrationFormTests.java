@@ -1,11 +1,12 @@
 package tests;
 
 
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
 
-
+@Story("Проверка формы регистрации")
 public class RegistrationFormTests extends TestBase {
 
     @Test

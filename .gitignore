@@ -17,3 +17,5 @@ build/
 /gradlew
 
 
+/gradle/wrapper/
+/gradle/

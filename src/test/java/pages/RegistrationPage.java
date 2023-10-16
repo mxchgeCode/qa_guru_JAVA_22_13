@@ -122,11 +122,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage clickSubmitButton() {
-        step("Нажимаем кнопку Submit", () -> {
-            submitButton.click();
-        });
-        return null;
+    public void clickSubmitButton() {
+        step("Нажимаем кнопку Submit", () -> submitButton.click());
     }
 
 }

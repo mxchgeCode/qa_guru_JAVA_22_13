@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class VerifyTextResultComponent {
 
 
-    SelenideElement resultWindowTitle = $("#example-modal-sizes-title-lg"),
+    SelenideElement resultWindowTitle = $("#example-modal-sizes-title-lg");
 
     public VerifyTextResultComponent checkResultWindowHaveText(String text) {
         resultWindowTitle.shouldHave(text(text));

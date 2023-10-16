@@ -26,27 +26,4 @@ public class VerifyTextResultComponent {
         return this;
     }
 
-    public VerifyTextResultComponent verifyOutputName(String text) {
-        outputName.shouldHave(
-                text(text));
-        return this;
-    }
-
-    public VerifyTextResultComponent verifyOutputEmail(String text) {
-        outputEmail.shouldHave(
-                text(text));
-        return this;
-    }
-
-    public VerifyTextResultComponent verifyOutputCurrentAddress(String text) {
-        outputCurrentAddress.shouldHave(
-                text(text));
-        return this;
-    }
-
-    public VerifyTextResultComponent verifyOutputPermanentAddress(String text) {
-        outputPermanentAddress.shouldHave(
-                text(text));
-        return this;
-    }
 }

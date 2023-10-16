@@ -1,13 +1,15 @@
 package pages.components;
+
 import com.codeborne.selenide.SelenideElement;
+
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class VerifyTextResultComponent {
 
 
     SelenideElement resultWindowTitle = $("#example-modal-sizes-title-lg"),
-            tableField = $(".table-responsive"),
             outputName = $("#output").$("#name"),
             outputEmail = $("#output").$("#email"),
             outputCurrentAddress = $("#output").$("#currentAddress"),
@@ -18,9 +20,9 @@ public class VerifyTextResultComponent {
         return this;
     }
 
-    public VerifyTextResultComponent verifyTableResult(String text) {
-        tableField.shouldHave(
-                text(text));
+    public VerifyTextResultComponent verifyTableResult(String key, String value) {
+        $(".table-responsive").$(byText(key)).parent()
+                .shouldHave(text(value));
         return this;
     }
 

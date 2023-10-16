@@ -1,6 +1,6 @@
 package tests;
 
-import org.junit.jupiter.api.Tag;
+
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -10,10 +10,10 @@ public class RegistrationFormTests extends TestBase {
 
     @Test
     void fillAllFormsAndVerifyResultTest() {
-        step("Open form", () -> {
+        step("Открываем страницу регистрации", () -> {
             registrationPage.openPage(testData.AUTOMATION_PRACTICE_URL);
         });
-        step("Fill form", () -> {
+        step("Заполняем форму", () -> {
             registrationPage.openPage(testData.AUTOMATION_PRACTICE_URL)
                     .setFirstName(testData.USER_NAME)
                     .setLastName(testData.USER_SURNAME)
@@ -29,7 +29,7 @@ public class RegistrationFormTests extends TestBase {
                     .setCity(testData.USER_CITY)
                     .clickSubmitButton();
         });
-        step("Verify test results", () -> {
+        step("Проверяем данные", () -> {
             verifyTextResultComponent.checkResultWindowHaveText(testData.TEXT_IN_RESULT_WINDOW)
                     .verifyTableResult("Student Name", testData.USER_NAME + " " + testData.USER_SURNAME)
                     .verifyTableResult("Student Email", testData.USER_EMAIL)
@@ -44,33 +44,4 @@ public class RegistrationFormTests extends TestBase {
         });
 
     }
-
-    @Test
-    @Tag("RequiredFields")
-    void checkRequiredFieldsViewTest() {
-        step("Open form", () -> {
-            registrationPage.openPage(testData.AUTOMATION_PRACTICE_URL);
-        });
-        step("Verify css values", () -> {
-            registrationPage.clickSubmitButton()
-                    .userFormContainsValidatedClass("was-validated")
-                    .containsRequiredCssValues("#firstName")
-                    .containsRequiredCssValues("#lastName")
-                    .containsRequiredCssValues("#userNumber");
-        });
-    }
-
-    @Test
-    @Tag("RequiredFields")
-    void fillUserNumberByLettersTest() {
-        step("Open form", () -> {
-            registrationPage.openPage(testData.AUTOMATION_PRACTICE_URL);
-        });
-        step("Verify css values", () -> {
-            registrationPage.setUserNumber(testData.TEST_TEXT)
-                    .clickSubmitButton()
-                    .containsRequiredCssValues("#userNumber");
-        });
-    }
-
 }

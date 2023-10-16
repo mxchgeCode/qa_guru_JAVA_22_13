@@ -38,10 +38,9 @@ public class TestData {
     public String DAY_OF_BIRTH = RandomStudent.getValueFromDate("dd", BIRTHDAY);
     public String SUBJECT = RandomStudent.getRandomArrayValue(subjects);
     public String HOBBY = RandomStudent.getRandomArrayValue(hobbies);
-    public String FILE_NAME = "1.png";
+    public String FILE_NAME = "img/1.png";
     public String USER_STATE = RandomStudent.getRandomArrayValue(state);
     public String USER_CITY = statesAndCities.get(USER_STATE);
     public String CURRENT_ADDRESS = faker.address().streetAddress();
-    public String TEST_TEXT = faker.lorem().characters(10);
     public String TEXT_IN_RESULT_WINDOW = "Thanks for submitting the form";
 }

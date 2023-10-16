@@ -27,6 +27,7 @@ public class RegistrationFormTests extends TestBase {
                 .setState(testData.USER_STATE)
                 .setCity(testData.USER_CITY)
                 .clickSubmitButton());
+
         step("Проверяем данные", () -> {
             verifyTextResultComponent.checkResultWindowHaveText(testData.TEXT_IN_RESULT_WINDOW)
                     .verifyTableResult("Student Name", testData.USER_NAME + " " + testData.USER_SURNAME)

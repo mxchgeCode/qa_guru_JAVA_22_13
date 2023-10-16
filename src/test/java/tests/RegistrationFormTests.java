@@ -29,23 +29,38 @@ public class RegistrationFormTests extends TestBase {
                 .clickSubmitButton());
 
         step("Проверяем данные", () -> {
-            verifyTextResultComponent.checkResultWindowHaveText(testData.TEXT_IN_RESULT_WINDOW)
-                    .verifyTableResult("Student Name", testData.USER_NAME + " " + testData.USER_SURNAME)
-                    .verifyTableResult("Student Email", testData.USER_EMAIL)
-                    .verifyTableResult("Gender", testData.USER_GENDER)
-                    .verifyTableResult("Mobile", testData.USER_NUMBER)
-                    .verifyTableResult("Date of Birth", testData.DAY_OF_BIRTH + " " + testData.MONTH_OF_BIRTH + "," + testData.YEAR_OF_BIRTH)
-                    .verifyTableResult("Subjects", testData.SUBJECT)
-                    .verifyTableResult("Hobbies", testData.HOBBY)
-                    .verifyTableResult("Picture", testData.FILE_NAME)
-                    .verifyTableResult("Address", testData.CURRENT_ADDRESS)
-                    .verifyTableResult("State and City", testData.USER_STATE + " " + testData.USER_CITY);
-        });
-
-        step("Проверяем данные", () -> {
+            step("Проверяем появление окна результатов", () -> {
+                verifyTextResultComponent.checkResultWindowHaveText(testData.TEXT_IN_RESULT_WINDOW);
+            });
+            step("Проверяем имя и фамилию студента", () -> {
+                verifyTextResultComponent.verifyTableResult("Student Name", testData.USER_NAME + " " + testData.USER_SURNAME);
+            });
+            step("Проверяем адрес почты студента", () -> {
+            verifyTextResultComponent.verifyTableResult("Student Email", testData.USER_EMAIL);
+            });
+            step("Проверяем пол студента", () -> {
+            verifyTextResultComponent.verifyTableResult("Gender", testData.USER_GENDER);
+            });
             step("Проверяем телефон студента", () -> {
-            verifyTextResultComponent
-                    .verifyTableResult("Mobile", testData.USER_NUMBER);
+                verifyTextResultComponent.verifyTableResult("Mobile", testData.USER_NUMBER);
+            });
+            step("Проверяем день рождения студента", () -> {
+                verifyTextResultComponent.verifyTableResult("Date of Birth", testData.DAY_OF_BIRTH + " " + testData.MONTH_OF_BIRTH + "," + testData.YEAR_OF_BIRTH);
+            });
+            step("Проверяем предметы студента", () -> {
+                verifyTextResultComponent.verifyTableResult("Subjects", testData.SUBJECT);
+            });
+            step("Проверяем хобби студента", () -> {
+                verifyTextResultComponent.verifyTableResult("Hobbies", testData.HOBBY);
+            });
+            step("Проверяем изображение", () -> {
+                verifyTextResultComponent.verifyTableResult("Picture", testData.FILE_NAME);
+            });
+            step("Проверяем адрес", () -> {
+                verifyTextResultComponent.verifyTableResult("Address", testData.CURRENT_ADDRESS);
+            });
+            step("Проверяем штат и город", () -> {
+                verifyTextResultComponent.verifyTableResult("State and City", testData.USER_STATE + " " + testData.USER_CITY);
             });
         });
 

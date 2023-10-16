@@ -31,10 +31,10 @@ public class RegistrationPage {
 
     public RegistrationPage openPage(String pageAddress) {
         step("Откываем форму, удаляем рекламу ", () -> {
-        open(pageAddress);
-        titleLabel.shouldHave(text("Student Registration Form"));
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+            open(pageAddress);
+            titleLabel.shouldHave(text("Student Registration Form"));
+            executeJavaScript("$('#fixedban').remove()");
+            executeJavaScript("$('footer').remove()");
         });
         return this;
     }

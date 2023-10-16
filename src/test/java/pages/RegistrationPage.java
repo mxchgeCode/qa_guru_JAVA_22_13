@@ -61,9 +61,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setGender(String value) {
-        step("Вводим пол студента", () -> {
-            genderWrapper.$(byText(value)).click();
-        });
+        step("Вводим пол студента", () -> genderWrapper.$(byText(value)).click());
         return this;
     }
 
@@ -90,9 +88,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage selectHobby(String hobby) {
-        step("Вводим хобби студента", () -> {
-            hobbiesWrapper.$(byText(hobby)).click();
-        });
+        step("Вводим хобби студента", () -> hobbiesWrapper.$(byText(hobby)).click());
         return this;
     }
 
@@ -130,7 +126,7 @@ public class RegistrationPage {
         step("Нажимаем кнопку Submit", () -> {
             submitButton.click();
         });
-        return this;
+        return null;
     }
 
 }

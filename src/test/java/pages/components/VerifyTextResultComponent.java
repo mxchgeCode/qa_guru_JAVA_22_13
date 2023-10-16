@@ -10,10 +10,6 @@ public class VerifyTextResultComponent {
 
 
     SelenideElement resultWindowTitle = $("#example-modal-sizes-title-lg"),
-            outputName = $("#output").$("#name"),
-            outputEmail = $("#output").$("#email"),
-            outputCurrentAddress = $("#output").$("#currentAddress"),
-            outputPermanentAddress = $("#output").$("#permanentAddress");
 
     public VerifyTextResultComponent checkResultWindowHaveText(String text) {
         resultWindowTitle.shouldHave(text(text));

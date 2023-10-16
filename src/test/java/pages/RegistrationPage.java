@@ -12,8 +12,7 @@ import static io.qameta.allure.Allure.step;
 public class RegistrationPage {
 
     CalendarComponent calendar = new CalendarComponent();
-    SelenideElement
-            titleLabel = $(".practice-form-wrapper");
+    SelenideElement titleLabel = $(".practice-form-wrapper");
     SelenideElement firstNameInput = $("#firstName");
     SelenideElement lastNameInput = $("#lastName");
     SelenideElement userEmailInput = $("#userEmail");
@@ -31,10 +30,12 @@ public class RegistrationPage {
 
 
     public RegistrationPage openPage(String pageAddress) {
+        step("Откываем форму, удаляем рекламу ", () -> {
         open(pageAddress);
         titleLabel.shouldHave(text("Student Registration Form"));
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
+        });
         return this;
     }
 

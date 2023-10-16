@@ -42,5 +42,12 @@ public class RegistrationFormTests extends TestBase {
                     .verifyTableResult("State and City", testData.USER_STATE + " " + testData.USER_CITY);
         });
 
+        step("Проверяем данные", () -> {
+            step("Проверяем телефон студента", () -> {
+            verifyTextResultComponent
+                    .verifyTableResult("Mobile", testData.USER_NUMBER);
+            });
+        });
+
     }
 }

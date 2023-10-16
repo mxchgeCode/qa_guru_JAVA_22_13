@@ -14,7 +14,7 @@ public class RegistrationFormTests extends TestBase {
         step("Открываем страницу регистрации", () -> {
             registrationPage.openPage(testData.AUTOMATION_PRACTICE_URL);
         });
-        step("Заполняем форму", () -> registrationPage.openPage(testData.AUTOMATION_PRACTICE_URL)
+        step("Заполняем форму", () -> registrationPage
                 .setFirstName(testData.USER_NAME)
                 .setLastName(testData.USER_SURNAME)
                 .setEmail(testData.USER_EMAIL)

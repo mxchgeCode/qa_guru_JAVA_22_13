@@ -13,22 +13,20 @@ public class RegistrationFormTests extends TestBase {
         step("Открываем страницу регистрации", () -> {
             registrationPage.openPage(testData.AUTOMATION_PRACTICE_URL);
         });
-        step("Заполняем форму", () -> {
-            registrationPage.openPage(testData.AUTOMATION_PRACTICE_URL)
-                    .setFirstName(testData.USER_NAME)
-                    .setLastName(testData.USER_SURNAME)
-                    .setEmail(testData.USER_EMAIL)
-                    .setGender(testData.USER_GENDER)
-                    .setUserNumber(testData.USER_NUMBER)
-                    .setDateOfBirth(testData.DAY_OF_BIRTH, testData.MONTH_OF_BIRTH, testData.YEAR_OF_BIRTH)
-                    .setSubject(testData.SUBJECT)
-                    .selectHobby(testData.HOBBY)
-                    .uploadImage(testData.FILE_NAME)
-                    .setAddress(testData.CURRENT_ADDRESS)
-                    .setState(testData.USER_STATE)
-                    .setCity(testData.USER_CITY)
-                    .clickSubmitButton();
-        });
+        step("Заполняем форму", () -> registrationPage.openPage(testData.AUTOMATION_PRACTICE_URL)
+                .setFirstName(testData.USER_NAME)
+                .setLastName(testData.USER_SURNAME)
+                .setEmail(testData.USER_EMAIL)
+                .setGender(testData.USER_GENDER)
+                .setUserNumber(testData.USER_NUMBER)
+                .setDateOfBirth(testData.DAY_OF_BIRTH, testData.MONTH_OF_BIRTH, testData.YEAR_OF_BIRTH)
+                .setSubject(testData.SUBJECT)
+                .selectHobby(testData.HOBBY)
+                .uploadImage(testData.FILE_NAME)
+                .setAddress(testData.CURRENT_ADDRESS)
+                .setState(testData.USER_STATE)
+                .setCity(testData.USER_CITY)
+                .clickSubmitButton());
         step("Проверяем данные", () -> {
             verifyTextResultComponent.checkResultWindowHaveText(testData.TEXT_IN_RESULT_WINDOW)
                     .verifyTableResult("Student Name", testData.USER_NAME + " " + testData.USER_SURNAME)

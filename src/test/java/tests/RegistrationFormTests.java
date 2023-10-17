@@ -2,6 +2,7 @@ package tests;
 
 
 import io.qameta.allure.Story;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -10,6 +11,7 @@ import static io.qameta.allure.Allure.step;
 public class RegistrationFormTests extends TestBase {
 
     @Test
+    @DisplayName("Заполнение формы регистрации студента")
     void fillAllFormsAndVerifyResultTest() {
         step("Открываем страницу регистрации", () -> {
             registrationPage.openPage(testData.AUTOMATION_PRACTICE_URL);
